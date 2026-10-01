@@ -80,8 +80,17 @@ python -m src.db          # writes data/hr.db to open in DB Browser for SQLite
 3. Pick the repo, branch `main`, main file `app.py`, then Deploy.
 
 ## Key insights
-Run `python -m src.insights` on the real dataset and paste the findings here, for example the
-department with the highest attrition, the riskiest tenure band, and the work-life balance gap.
+Based on 1,470 employee records, with an overall attrition rate of 16.1% (237 leavers).
+
+- **Sales has the highest department attrition** at 20.6%, compared with 13.8% in Research & Development.
+- **New joiners leave most.** The 0-1 year tenure band has 34.9% attrition (75 of 215).
+- **Sales employees in their first two years are the riskiest segment**, at 39.3%, which is 2.4x the company average.
+- **Pay matters.** The lowest income quartile has 29.3% attrition. Leavers earned about 4,787 a month on average versus 6,833 for stayers.
+- **Work-life balance matters.** Attrition is 31.3% for employees with the poorest score, versus 14.2% at a score of 3.
+- **Job satisfaction matters.** Attrition is 22.8% at satisfaction 1 versus 11.3% at satisfaction 4.
+- Leavers also had shorter tenure: 5.1 years on average versus 7.4 for stayers.
+
+These are patterns in the data, not proof of cause.
 
 ## Using Power BI or Tableau
 The same CSV (or `data/hr.db`) can be connected to Power BI or Tableau, and the queries in `sql/`
