@@ -4,9 +4,10 @@ An analytics project that uses SQL to find out who leaves a company, when, and w
 common. The results are shown in an interactive Streamlit dashboard, and every chart has a
 "View the SQL behind this" box so the queries are easy to review.
 
-# **Live demo:** https://hr-attritiondashboard.streamlit.app/
+# Live demo: https://hr-attritiondashboard.streamlit.app/
 
-# **GitHUb Link:** https://github.com/gitwithpk-1131/hr-attrition-dashboard
+# GitHUb Link: https://github.com/gitwithpk-1131/hr-attrition-dashboard
+
 ## What it answers
 - Which departments and education fields lose the most people?
 - Which tenure bands (new joiners vs long-serving staff) have the highest attrition?
