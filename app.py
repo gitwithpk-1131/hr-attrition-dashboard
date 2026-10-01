@@ -5,7 +5,6 @@ import itertools
 
 import plotly.express as px
 import streamlit as st
-
 from src.db import load_dataframe, make_connection, read_sql_file, run_query
 from src.insights import build_insights
 
@@ -22,7 +21,7 @@ conn, using_sample = get_connection()
 kpi = run_query(conn, "01_headline_kpis.sql").iloc[0]
 company_rate = float(kpi["attrition_rate_pct"])
 
-chart_ids = itertools.count()  # gives every chart its own unique key
+
 def show_sql(name: str) -> None:
     with st.expander("View the SQL behind this"):
         st.code(read_sql_file(name), language="sql")
@@ -34,15 +33,16 @@ def rate_bar(df, category: str, title: str, horizontal: bool = False) -> None:
     if horizontal:
         df = df.iloc[::-1]
         fig = px.bar(df, x="attrition_rate_pct", y=category, orientation="h", text="attrition_rate_pct", title=title)
-        fig.add_vline(x=company_rate, line_dash="dash", annotation_text=f"Company {company_rate}%")
+        fig.add_vline(x=company_rate, line_dash="dash", line_color="orange", annotation_text=f"Company {company_rate}%")
         fig.update_layout(xaxis_title="Attrition rate (%)", yaxis_title=None)
     else:
         fig = px.bar(df, x=category, y="attrition_rate_pct", text="attrition_rate_pct", title=title)
-        fig.add_hline(y=company_rate, line_dash="dash", annotation_text=f"Company {company_rate}%")
+        fig.add_hline(y=company_rate, line_dash="dash", line_color="orange", annotation_text=f"Company {company_rate}%")
         fig.update_layout(yaxis_title="Attrition rate (%)", xaxis_title=None)
     fig.update_traces(texttemplate="%{text}%", textposition="outside")
     fig.update_layout(showlegend=False)
-    st.plotly_chart(fig, key=f"chart_{next(chart_ids)}")
+    st.plotly_chart(fig)
+
 
 st.title("HR Attrition & Workforce Analytics")
 st.caption("Where people leave, and what the data says about why.")
