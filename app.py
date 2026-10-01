@@ -21,6 +21,8 @@ conn, using_sample = get_connection()
 kpi = run_query(conn, "01_headline_kpis.sql").iloc[0]
 company_rate = float(kpi["attrition_rate_pct"])
 
+chart_ids = itertools.count()  # gives every chart its own unique key
+
 
 def show_sql(name: str) -> None:
     with st.expander("View the SQL behind this"):
@@ -41,8 +43,7 @@ def rate_bar(df, category: str, title: str, horizontal: bool = False) -> None:
         fig.update_layout(yaxis_title="Attrition rate (%)", xaxis_title=None)
     fig.update_traces(texttemplate="%{text}%", textposition="outside")
     fig.update_layout(showlegend=False)
-    st.plotly_chart(fig)
-
+    st.plotly_chart(fig, key=f"chart_{next(chart_ids)}")
 
 st.title("HR Attrition & Workforce Analytics")
 st.caption("Where people leave, and what the data says about why.")
